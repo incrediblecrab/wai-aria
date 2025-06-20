@@ -1,5 +1,5 @@
 {
-  "name": "wcag-checker",
+  "name": "wai-aria-checker",
   "version": "0.1.0",
   "description": "A comprehensive WCAG 2.1 compliance checker for web applications",
   "main": "./dist/index.js",
