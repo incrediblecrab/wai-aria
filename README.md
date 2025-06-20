@@ -241,7 +241,7 @@ interface ScanResult {
 
 ## Contributing
 
-1. Fork the repository
+1. Fork the repository at https://github.com/incrediblecrab/wai-aria
 2. Create a feature branch: `git checkout -b feature/new-rule`
 3. Run tests: `npm test`
 4. Submit a pull request
@@ -278,8 +278,8 @@ MIT License - see LICENSE file for details.
 ## Support
 
 - 📖 [WCAG 2.1 Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
-- 🐛 [Issue Tracker](https://github.com/user/wcag-checker/issues)
-- 💬 [Discussions](https://github.com/user/wcag-checker/discussions)
+- 🐛 [Issue Tracker](https://github.com/incrediblecrab/wai-aria/issues)
+- 💬 [Discussions](https://github.com/incrediblecrab/wai-aria/discussions)
 
 ---
 

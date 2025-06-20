@@ -1,5 +1,5 @@
 {
-  "name": "wcag-checker",
+  "name": "@incrediblecrab/wcag-checker",
   "version": "1.0.0",
   "description": "A comprehensive WCAG 2.1 compliance checker for web applications",
   "main": "./dist/index.js",
@@ -31,8 +31,16 @@
     "semantic",
     "testing"
   ],
-  "author": "Your Name",
+  "author": "incrediblecrab",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/incrediblecrab/wai-aria.git"
+  },
+  "bugs": {
+    "url": "https://github.com/incrediblecrab/wai-aria/issues"
+  },
+  "homepage": "https://github.com/incrediblecrab/wai-aria#readme",
   "engines": {
     "node": ">=14.0.0"
   },
