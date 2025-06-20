@@ -1,6 +1,10 @@
-# WCAG Checker
+# WCAG Checker 🎯
 
-A comprehensive WCAG 2.1 compliance checker for web applications. Automatically scan your HTML files for accessibility violations and get detailed reports with actionable suggestions.
+A comprehensive WCAG 2.1 compliance checker for web applications that identifies accessibility violations and provides actionable remediation guidance.
+
+[![npm version](https://badge.fury.io/js/wcag-checker.svg)](https://badge.fury.io/js/wcag-checker)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub issues](https://img.shields.io/github/issues/incrediblecrab/wai-aria.svg)](https://github.com/incrediblecrab/wai-aria/issues)
 
 ## Features
 

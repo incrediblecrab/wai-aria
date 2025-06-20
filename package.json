@@ -1,6 +1,6 @@
 {
-  "name": "@incrediblecrab/wcag-checker",
-  "version": "1.0.0",
+  "name": "wcag-checker",
+  "version": "0.1.0",
   "description": "A comprehensive WCAG 2.1 compliance checker for web applications",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
