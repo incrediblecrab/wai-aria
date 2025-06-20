@@ -1,0 +1,1 @@
+{"version":3,"file":"html-formatter.d.ts","sourceRoot":"","sources":["../../src/formatters/html-formatter.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,EAAyB,MAAM,UAAU,CAAC;AAE7D,qBAAa,aAAa;IACxB,MAAM,CAAC,MAAM,EAAE,UAAU,GAAG,MAAM;IA6MlC,OAAO,CAAC,kBAAkB;IAW1B,OAAO,CAAC,gBAAgB;IAkBxB,OAAO,CAAC,eAAe;IA6BvB,OAAO,CAAC,UAAU;CAQnB"}

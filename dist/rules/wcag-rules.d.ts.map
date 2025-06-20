@@ -1,0 +1,1 @@
+{"version":3,"file":"wcag-rules.d.ts","sourceRoot":"","sources":["../../src/rules/wcag-rules.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,QAAQ,EAAE,eAAe,EAAY,MAAM,UAAU,CAAC;AAE/D,eAAO,MAAM,UAAU,EAAE,MAAM,CAAC,MAAM,EAAE,QAAQ,CAuD/C,CAAC;AAEF,wBAAgB,eAAe,CAAC,KAAK,EAAE,eAAe,GAAG,QAAQ,EAAE,CAOlE;AAED,wBAAgB,WAAW,CAAC,EAAE,EAAE,MAAM,GAAG,QAAQ,GAAG,SAAS,CAE5D"}
