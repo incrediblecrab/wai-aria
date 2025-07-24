@@ -1,0 +1,31 @@
+# Source files
+src/
+*.ts
+!*.d.ts
+
+# Development files
+.vscode/
+.idea/
+*.log
+coverage/
+.nyc_output/
+
+# Test files
+**/*.test.*
+**/__tests__/
+jest.config.js
+
+# Build tools
+tsconfig.json
+.eslintrc.*
+
+# Git
+.git/
+.gitignore
+
+# Examples (optional - remove this line if you want to include examples)
+examples/
+
+# Documentation source
+*.md
+!README.md
