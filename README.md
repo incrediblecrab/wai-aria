@@ -1,10 +1,11 @@
 # WCAG Checker 🎯
 
+![npm version](https://img.shields.io/npm/v/wai-aria-checker)
+![MLoT](https://img.shields.io/badge/MLoT-ai-blue)
+
 A comprehensive WCAG 2.1 compliance checker for web applications that identifies accessibility violations and provides actionable remediation guidance.
 
-[![npm version](https://badge.fury.io/js/wcag-checker.svg)](https://badge.fury.io/js/wcag-checker)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![GitHub issues](https://img.shields.io/github/issues/incrediblecrab/wai-aria.svg)](https://github.com/incrediblecrab/wai-aria/issues)
+![Demo](https://raw.githubusercontent.com/incrediblecrab/Packages-and-Extensions-Media/main/wcag-checker.gif)
 
 ## Features
 
@@ -284,6 +285,20 @@ MIT License - see LICENSE file for details.
 - 📖 [WCAG 2.1 Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
 - 🐛 [Issue Tracker](https://github.com/incrediblecrab/wai-aria/issues)
 - 💬 [Discussions](https://github.com/incrediblecrab/wai-aria/discussions)
+
+---
+
+## Resources
+
+- 📺 [Watch Demo Video](https://youtu.be/ofUSsIKd4pk)
+- 🌐 [Visit MLoT Page](https://mlot.ai/wai-aria/)
+- 📦 [View on GitHub](https://github.com/incrediblecrab/wai-aria)
+- 🔒 [Privacy Policy](https://mlot.ai/privacy)
+
+## Publisher
+
+**Max's Lab of Things**
+Visit [mlot.ai](https://mlot.ai/)
 
 ---
 
