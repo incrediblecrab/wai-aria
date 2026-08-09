@@ -244,28 +244,6 @@ interface ScanResult {
 }
 ```
 
-## Contributing
-
-1. Fork the repository at https://github.com/incrediblecrab/wai-aria
-2. Create a feature branch: `git checkout -b feature/new-rule`
-3. Run tests: `npm test`
-4. Submit a pull request
-
-### Adding New Rules
-
-```typescript
-import { BaseRule } from './core/compliance-engine';
-
-export class CustomRule extends BaseRule {
-  id = 'custom-rule';
-
-  analyze(file: ParsedFile, analyzer: HTMLAnalyzer): Violation[] {
-    // Rule implementation
-    return violations;
-  }
-}
-```
-
 ## Roadmap
 
 - [ ] CSS analysis support
@@ -276,23 +254,10 @@ export class CustomRule extends BaseRule {
 - [ ] Performance optimizations
 - [ ] Additional WCAG 2.2 rules
 
-## License
-
-MIT License - see LICENSE file for details.
-
-## Support
-
-- 📖 [WCAG 2.1 Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
-- 🐛 [Issue Tracker](https://github.com/incrediblecrab/wai-aria/issues)
-- 💬 [Discussions](https://github.com/incrediblecrab/wai-aria/discussions)
-
----
-
 ## Resources
 
 - 📺 [Watch Demo Video](https://youtu.be/ofUSsIKd4pk)
 - 🌐 [Visit MLoT Page](https://mlot.ai/wai-aria/)
-- 📦 [View on GitHub](https://github.com/incrediblecrab/wai-aria)
 - 🔒 [Privacy Policy](https://mlot.ai/privacy)
 
 ## Publisher
@@ -300,6 +265,6 @@ MIT License - see LICENSE file for details.
 **Max's Lab of Things**
 Visit [mlot.ai](https://mlot.ai/)
 
----
+## License
 
-Built with ❤️ for web accessibility
+MIT
