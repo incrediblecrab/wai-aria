@@ -5,7 +5,7 @@
 
 A comprehensive WCAG 2.1 compliance checker for web applications that identifies accessibility violations and provides actionable remediation guidance.
 
-![Demo](https://raw.githubusercontent.com/incrediblecrab/Packages-and-Extensions-Media/main/wcag-checker.gif)
+![Demo](https://raw.githubusercontent.com/incrediblecrab/Packages-and-Extensions-Media/main/gifs/wcag-checker.gif)
 
 ## Features
 
