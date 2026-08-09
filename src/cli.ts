@@ -12,7 +12,7 @@ const program = new Command();
 program
   .name('wcag-checker')
   .description('WCAG 2.1 compliance checker for web applications')
-  .version('1.0.0');
+  .version(require('../package.json').version);
 
 program
   .command('scan')
