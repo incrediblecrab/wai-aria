@@ -1,65 +1,103 @@
-# WCAG Checker 🎯
+# wai-aria
 
-![npm version](https://img.shields.io/npm/v/wai-aria-checker)
-![MLoT](https://img.shields.io/badge/MLoT-ai-blue)
+![npm version](https://img.shields.io/npm/v/wai-aria-checker) ![MLoT](https://img.shields.io/badge/MLoT-ai-blue)
 
-A comprehensive WCAG 2.1 compliance checker for web applications that identifies accessibility violations and provides actionable remediation guidance.
+wai-aria is the GitHub repository for WCAG Checker, a TypeScript CLI and library that scans web files for WCAG 2.1 accessibility issues. It is published on npm as [`wai-aria-checker`](https://www.npmjs.com/package/wai-aria-checker) version 1.5.1, matching this repository, and installs the `wcag-checker` command.
 
 ![Demo](https://raw.githubusercontent.com/incrediblecrab/mlot-developer-media/main/gifs/wcag-checker.gif)
 
-## Features
+**Objective:** help developers find common accessibility violations in HTML and related web files, with text, JSON or HTML output for local review and CI.
 
-- ✅ **Complete WCAG 2.1 Support**: Checks for A, AA, and AAA compliance levels
-- 🔍 **Comprehensive Rule Set**: 
-  - Image alt text validation
-  - Form label associations
-  - Link accessibility names
-  - Heading structure and order
-  - Color contrast analysis
-  - ARIA attribute validation
-- 📊 **Multiple Output Formats**: Text, JSON, and interactive HTML reports
-- 🎯 **Actionable Suggestions**: Each violation includes specific remediation guidance
-- ⚡ **Fast Scanning**: Efficient file processing with glob pattern support
-- 🔧 **Configurable**: Customize rules, compliance levels, and output options
-- 📈 **CI/CD Ready**: Exit codes for build pipeline integration
+**Inputs:** Node.js, a directory to scan, HTML or related web files, optional include and exclude globs, and a WCAG level of `A`, `AA` or `AAA`.
 
-## Installation
+**Files:**
 
-```bash
-npm install -g wcag-checker
+- [`bin/`](bin/): the published `wcag-checker` executable wrapper
+- [`examples/`](examples/): basic, advanced and CI usage examples
+- [`src/`](src/): TypeScript CLI, scanner, compliance engine, rules, formatters and exported library entry point
+- [`test.html`](test.html): sample HTML for exercising the scanner
+- [`CHANGELOG.md`](CHANGELOG.md): release notes
+- [`package.json`](package.json): npm metadata, scripts and the `wcag-checker` bin mapping
+- [`tsconfig.json`](tsconfig.json): TypeScript build configuration
+
+**Try it:** `npm install -g wai-aria-checker`, then `wcag-checker scan . --format text`, or run the checked-out copy with `node bin/cli.js --help`.
+
+## CLI reference
+
+`wcag-checker scan <directory> [options]` scans the supplied directory.
+
+Options verified against `src/cli.ts`:
+
+- `-l, --level <level>` sets the compliance level to `A`, `AA` or `AAA`; the default is `AA`.
+- `-f, --format <format>` accepts `json`, `html` or `text`; the default is `text`.
+- `-o, --output <file>` writes the report to a file.
+- `--fail-on-error` exits with code `1` when error-level violations are found.
+- `--include <patterns...>` sets file globs to include.
+- `--exclude <patterns...>` sets file globs to exclude.
+
+The scanner defaults to `**/*.html` and `**/*.htm`, ignores `node_modules/**`, `dist/**`, `build/**` and `.git/**`, and can parse `.html`, `.htm`, `.css`, `.js`, `.jsx`, `.ts` and `.tsx` files when include patterns select them.
+
+## Supported rules
+
+### Level A rules
+
+- `img-alt`: images must have alternative text or be marked as decorative.
+- `form-label`: form inputs must have labels or another accessible labeling mechanism.
+- `link-name`: links must have accessible text or an accessible name.
+- `aria-valid`: ARIA roles, attributes, values and ID references must be valid.
+
+### Level AA rules
+
+- `heading-order`: headings must not skip levels, empty headings are reported, and H1 structure warnings are included.
+- `color-contrast`: text must meet contrast thresholds of 4.5:1 for normal text and 3:1 for large text.
+
+### Additional checks
+
+- Empty headings.
+- Multiple H1 warnings.
+- Generic link text warnings.
+- Conflicting `aria-label` and `aria-labelledby`.
+- Missing ID references from ARIA attributes.
+- Focusable elements with `aria-hidden="true"`.
+
+## Output formats
+
+### Text output
+
+Text output prints a terminal summary with files scanned, total violations, severity counts, compliance percentage, and each violation with its element when available.
+
+### JSON output
+
+JSON output serializes the `ScanResult` object:
+
+```json
+{
+  "files": [],
+  "summary": {
+    "totalFiles": 5,
+    "totalViolations": 12,
+    "errorCount": 8,
+    "warningCount": 4,
+    "infoCount": 0,
+    "passedRules": 20,
+    "failedRules": 6
+  },
+  "compliance": {
+    "level": "AA",
+    "percentage": 73.2,
+    "breakdown": { "A": 80, "AA": 70, "AAA": 0 }
+  }
+}
 ```
 
-Or use without installing:
+### HTML output
 
-```bash
-npx wcag-checker scan ./src
-```
+HTML output includes a compliance dashboard, scanned-file summaries, violations, selectors, elements and suggestions generated by the HTML formatter.
 
-## Quick Start
+## Library use
 
-### Command Line Usage
-
-```bash
-# Scan current directory for WCAG AA violations
-wcag-checker scan .
-
-# Scan specific directory with custom compliance level
-wcag-checker scan ./src --level AAA
-
-# Generate HTML report
-wcag-checker scan ./src --format html --output report.html
-
-# Include specific file patterns
-wcag-checker scan . --include "**/*.html" "**/*.htm"
-
-# Exclude patterns and fail on errors (for CI)
-wcag-checker scan ./src --exclude "node_modules/**" --fail-on-error
-```
-
-### Programmatic Usage
-
-```javascript
-import WCAGChecker, { ComplianceLevel } from 'wcag-checker';
+```typescript
+import WCAGChecker, { ComplianceLevel } from 'wai-aria-checker';
 
 const checker = new WCAGChecker({
   level: ComplianceLevel.AA,
@@ -69,144 +107,19 @@ const checker = new WCAGChecker({
 });
 
 const results = await checker.scan('./src');
-console.log(`Compliance: ${results.compliance.percentage}%`);
+console.log(results.compliance.percentage);
 ```
 
-## Supported Rules
+## API reference
 
-### Level A Rules
-- **img-alt**: Images must have alternative text
-- **form-label**: Form inputs must have labels  
-- **link-name**: Links must have accessible names
-- **aria-valid**: ARIA attributes must be valid
-
-### Level AA Rules  
-- **heading-order**: Headings must be in correct order
-- **color-contrast**: Text must have sufficient color contrast (4.5:1 for normal text, 3:1 for large text)
-
-### Additional Checks
-- Empty headings detection
-- Multiple H1 warnings
-- Generic link text warnings
-- Conflicting ARIA attributes
-- Missing ID references
-- Focusable elements with aria-hidden
-
-## CLI Options
-
-| Option | Description | Default |
-|--------|-------------|---------|
-| `--level <level>` | Compliance level (A, AA, AAA) | AA |
-| `--format <format>` | Output format (text, json, html) | text |
-| `--output <file>` | Save report to file | - |
-| `--include <patterns...>` | File patterns to include | `**/*.html` |
-| `--exclude <patterns...>` | File patterns to exclude | `node_modules/**` |
-| `--fail-on-error` | Exit with code 1 if errors found | false |
-| `--rules <rules...>` | Specific rules to run | all |
-| `--ignore-rules <rules...>` | Rules to ignore | none |
-
-## Configuration File
-
-Create a `.wcagrc.json` file in your project root:
-
-```json
-{
-  "level": "AA",
-  "include": ["src/**/*.html", "public/**/*.html"],
-  "exclude": ["node_modules/**", "dist/**"],
-  "rules": ["img-alt", "form-label", "heading-order"],
-  "outputFormat": "html",
-  "failOnError": true
-}
-```
-
-## Output Formats
-
-### Text Output
-Clean, colored terminal output with summary and detailed violations.
-
-### JSON Output
-Structured data perfect for integration with other tools:
-
-```json
-{
-  "timestamp": "2024-01-01T12:00:00.000Z",
-  "summary": {
-    "totalFiles": 5,
-    "totalViolations": 12,
-    "errorCount": 8,
-    "warningCount": 4,
-    "compliance": 73.2
-  },
-  "files": [...],
-  "compliance": {...}
-}
-```
-
-### HTML Output
-Interactive report with:
-- Visual compliance dashboard
-- Expandable file sections
-- Syntax-highlighted code snippets
-- Actionable suggestions with links to WCAG documentation
-
-## Integration Examples
-
-### GitHub Actions
-
-```yaml
-name: Accessibility Check
-on: [push, pull_request]
-jobs:
-  accessibility:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-      - run: npx wcag-checker scan ./src --fail-on-error
-      - uses: actions/upload-artifact@v2
-        if: always()
-        with:
-          name: accessibility-report
-          path: report.html
-```
-
-### Pre-commit Hook
-
-```json
-{
-  "husky": {
-    "hooks": {
-      "pre-commit": "wcag-checker scan ./src --fail-on-error"
-    }
-  }
-}
-```
-
-### npm Scripts
-
-```json
-{
-  "scripts": {
-    "a11y": "wcag-checker scan ./src",
-    "a11y:ci": "wcag-checker scan ./src --fail-on-error --format json --output a11y-report.json",
-    "a11y:report": "wcag-checker scan ./src --format html --output accessibility-report.html"
-  }
-}
-```
-
-## API Reference
-
-### WCAGChecker Class
+### WCAGChecker class
 
 ```typescript
 class WCAGChecker {
   constructor(options?: Partial<ScanOptions>)
   async scan(directory: string): Promise<ScanResult>
   updateOptions(options: Partial<ScanOptions>): void
-  registerRule(rule: BaseRule): void
+  registerRule(rule: any): void
 }
 ```
 
@@ -244,27 +157,26 @@ interface ScanResult {
 }
 ```
 
-## Roadmap
+## Development
 
-- [ ] CSS analysis support
-- [ ] JavaScript accessibility patterns
-- [ ] React/Vue component scanning
-- [ ] VS Code extension
-- [ ] Custom rule plugins
-- [ ] Performance optimizations
-- [ ] Additional WCAG 2.2 rules
+```bash
+npm install
+npm run build
+npm test
+npm run lint
+```
 
-## Resources
+`npm run build` compiles TypeScript to `dist/`. `npm test` runs Jest through `ts-jest`, and `npm run lint` checks `src/**/*.ts` with ESLint.
 
-- 📺 [Watch Demo Video](https://youtu.be/ofUSsIKd4pk)
-- 🌐 [Visit MLoT Page](https://mlot.ai/wai-aria/)
-- 🔒 [Privacy Policy](https://mlot.ai/privacy)
+## Links
 
-## Publisher
-
-**Max's Lab of Things**
-Visit [mlot.ai](https://mlot.ai/)
+- [npm package](https://www.npmjs.com/package/wai-aria-checker)
+- [Demo video](https://youtu.be/ofUSsIKd4pk)
+- [MLoT product page](https://mlot.ai/wai-aria/)
+- [Privacy policy](https://mlot.ai/privacy)
+- [Issues](https://github.com/incrediblecrab/wai-aria/issues)
+- Publisher: [Max's Lab of Things](https://mlot.ai/)
 
 ## License
 
-MIT
+MIT. See [`LICENSE`](LICENSE).
